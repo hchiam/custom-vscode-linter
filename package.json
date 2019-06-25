@@ -1,0 +1,45 @@
+{
+	"name": "custom-vscode-linter",
+	"description": "custom VSCode linter",
+	"version": "0.0.1",
+	"publisher": "hchiam",
+	"license": "MIT",
+	"engines": {
+		"vscode": "^1.27.0"
+	},
+	"repository": {
+		"url": "https://github.com/hchiam/custom-vscode-linter"
+	},
+	"categories": [
+		"Other"
+	],
+	"activationEvents": [
+		"*"
+	],
+	"main": "./out/extension.js",
+	"contributes": {
+		"colors": [
+			{
+				"id": "myextension.decorationType",
+				"description": "Background decoration color",
+				"defaults": {
+					"light": "darkblue",
+					"dark": "lightblue",
+					"highContrast": "darkblue"
+				}
+			}
+		]
+	},
+	"scripts": {
+		"vscode:prepublish": "npm run compile",
+		"compile": "tsc -p ./",
+		"lint": "tslint -p ./",
+		"watch": "tsc -watch -p ./"
+	},
+	"devDependencies": {
+		"@types/node": "^8.9.1",
+		"tslint": "^5.16.0",
+		"typescript": "^3.5.1",
+		"@types/vscode": "^1.32.0"
+	}
+}

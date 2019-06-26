@@ -65,7 +65,7 @@ export function activate(context: vscode.ExtensionContext) {
 		}
 		activeEditor.setDecorations(decorationType, rangesToDecorate);
 		if (errors.length > 0) {
-			let startOfMessage = `An ID of 0 would evaluate to false. Consider adding "!= null" for these if statements: `;
+			let startOfMessage = `ID of 0 would evaluate to false. Consider adding "!= null" for if-statements containing IDs: `;
 			vscode.window.showInformationMessage(startOfMessage + errors.join(', '));
 		}
 	}

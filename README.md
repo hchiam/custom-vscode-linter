@@ -1,7 +1,7 @@
 # Custom VSCode Linter
 
-- `npm install`
-- `npm run watch`
+- `npm install` (just once inside the folder)
+- `npm run watch` (every time you want to test it)
 - open folder in VS Code and hit F5 or go to Debug and click on the green triangle play button
 - in user settings, you can customize the decoration color.
 ```

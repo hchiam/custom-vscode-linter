@@ -1,5 +1,8 @@
 # Custom VSCode Linter
 
+## If you want to experiment with the source code:
+
+- (do the usual steps to download from GitHub and navigate to folder)
 - `npm install` (just once inside the folder)
 - `npm run watch` (every time you want to test it)
 - open folder in VS Code and hit F5 or go to Debug and click on the green triangle play button
@@ -12,9 +15,58 @@
 
 The key file to edit is `extension.ts` (in the `src` folder).
 
-This repo took inspiration from https://github.com/microsoft/vscode-extension-samples/tree/master/decorator-sample
+## If you want to try it yourself from scratch:
 
-# Other References:
+```
+npm install -g yo generator-code
+npm install -g vsce
+```
+
+```
+yo code
+
+     _-----_     ╭──────────────────────────╮
+    |       |    │   Welcome to the Visual  │
+    |--(o)--|    │   Studio Code Extension  │
+   `---------´   │        generator!        │
+    ( _´U`_ )    ╰──────────────────────────╯
+    /___A___\   /
+     |  ~  |     
+   __'.___.'__   
+ ´   `  |° ´ Y ` 
+
+? What type of extension do you want to create? New Extension (TypeScript)
+? What's the name of your extension? custom-vscode-linter
+? What's the identifier of your extension? custom-vscode-linter
+? What's the description of your extension? Custom VSCode Linter!
+? Enable JavaScript type checking in 'jsconfig.json'? No
+? Initialize a git repository? No
+? Which package manager to use? npm
+```
+
+edit extension.ts
+edit README.md
+edit package.json (add publisher and repository)
+
+```
+vsce package
+
+```
+
+Ctrl+Shift+P
+VSIX
+
+(get token as per steps in references)
+
+```
+vsce publish -p <token>
+vsce publish
+
+```
+
+# References I Used:
+
+https://github.com/microsoft/vscode-extension-samples/tree/master/decorator-sample
 
 https://itnext.io/creating-and-publishing-vs-code-extensions-912b5b8b529
 

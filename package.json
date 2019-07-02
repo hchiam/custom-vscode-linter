@@ -1,14 +1,15 @@
 {
 	"name": "custom-vscode-linter",
-	"description": "custom VSCode linter",
+	"displayName": "custom-vscode-linter",
+	"description": "Custom VSCode Linter!",
 	"version": "0.0.1",
 	"publisher": "hchiam",
-	"license": "MIT",
-	"engines": {
-		"vscode": "^1.32.0"
-	},
 	"repository": {
+		"type": "git",
 		"url": "https://github.com/hchiam/custom-vscode-linter"
+	},
+	"engines": {
+		"vscode": "^1.35.0"
 	},
 	"categories": [
 		"Other"
@@ -18,28 +19,25 @@
 	],
 	"main": "./out/extension.js",
 	"contributes": {
-		"colors": [
+		"commands": [
 			{
-				"id": "myextension.decorationType",
-				"description": "Background decoration color",
-				"defaults": {
-					"light": "darkblue",
-					"dark": "lightblue",
-					"highContrast": "darkblue"
-				}
+				"command": "extension.custom-vscode-linter",
+				"title": "Custom VSCode Linter"
 			}
 		]
 	},
 	"scripts": {
 		"vscode:prepublish": "npm run compile",
 		"compile": "tsc -p ./",
-		"lint": "tslint -p ./",
-		"watch": "tsc -watch -p ./"
+		"watch": "tsc -watch -p ./",
+		"postinstall": "node ./node_modules/vscode/bin/install",
+		"test": "npm run compile && node ./node_modules/vscode/bin/test"
 	},
 	"devDependencies": {
-		"@types/node": "^8.9.1",
-		"tslint": "^5.16.0",
-		"typescript": "^3.5.1",
-		"@types/vscode": "^1.32.0"
+		"typescript": "^3.3.1",
+		"vscode": "^1.1.28",
+		"tslint": "^5.12.1",
+		"@types/node": "^10.12.21",
+		"@types/mocha": "^2.2.42"
 	}
 }

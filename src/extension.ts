@@ -46,10 +46,9 @@ export function activate(context: vscode.ExtensionContext) {
 		if (!activeEditor) {
 			return;
 		}
-		// TODO: regexIfStatement -> for each, get ID variables separated by && and ||
-		const regexIdVariable = /if ?\(([^=)]*[iI][dD](?!(==)))\)/g;
 		const text = activeEditor.document.getText();
 		const rangesToDecorate: vscode.DecorationOptions[] = [];
+		const regexIdVariable = /if ?\(([^=)]*[iI][dD](?!\.)\b) ?[^=<>\r\n]*?\)/g;
 		let match = regexIdVariable.exec(text);
 		let errors = [];
 		while (match) {
@@ -58,7 +57,7 @@ export function activate(context: vscode.ExtensionContext) {
 			const endPos = activeEditor.document.positionAt(match.index + match[0].length);
 			const decoration = {
 				range: new vscode.Range(startPos, endPos),
-				hoverMessage: `An ID of 0 would evaluate to false. Consider: if (${match[1]} != null)`
+				hoverMessage: `An ID of 0 would evaluate to false. Consider: ${match[1]} != null`
 			};
 			rangesToDecorate.push(decoration);
 			match = regexIdVariable.exec(text);

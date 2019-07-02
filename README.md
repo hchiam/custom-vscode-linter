@@ -53,10 +53,14 @@ vsce package
 
 ```
 
+(in VS Code:)
 Ctrl+Shift+P
 VSIX
 
 (get token as per steps in references)
+
+edit package.json (update version)
+edit package-lock.json (update version)
 
 ```
 vsce publish -p <token>

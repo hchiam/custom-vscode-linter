@@ -1,5 +1,7 @@
 # Custom VSCode Linter
 
+https://marketplace.visualstudio.com/items?itemName=hchiam.custom-vscode-linter
+
 ## If you want to experiment with the source code:
 
 - (do the usual steps to download from GitHub and navigate to folder)

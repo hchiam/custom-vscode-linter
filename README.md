@@ -13,3 +13,9 @@
 The key file to edit is `extension.ts` (in the `src` folder).
 
 This repo took inspiration from https://github.com/microsoft/vscode-extension-samples/tree/master/decorator-sample
+
+# Other References:
+
+https://itnext.io/creating-and-publishing-vs-code-extensions-912b5b8b529
+
+https://code.visualstudio.com/api/working-with-extensions/publishing-extension

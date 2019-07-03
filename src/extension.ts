@@ -46,9 +46,40 @@ export function activate(context: vscode.ExtensionContext) {
 		if (!activeEditor) {
 			return;
 		}
+		let rangesToDecorate: vscode.DecorationOptions[] = [];
+		check_ifIdWithoutNotNull(rangesToDecorate);
+		check_ifAssignInsteadOfEquals(rangesToDecorate);
+		check_endWithSemicolon(rangesToDecorate);
+		activeEditor.setDecorations(decorationType, rangesToDecorate);
+	}
+
+	function check_ifIdWithoutNotNull(rangesToDecorate: vscode.DecorationOptions[]) {
+		let regex = /if ?\(([^=)]*[iI][dD](?!\.)\b) ?[^=<>\r\n]*?\)/g;
+		let hoverMessage = 'An ID of 0 would evaluate to false. Consider: ${match[1]} != null';
+		let popupMessage = 'ID of 0 would evaluate to false. Consider adding "!= null" for if-statements containing IDs: ${errors.join(", ")}';
+		genericCheck(regex, hoverMessage, popupMessage, rangesToDecorate);
+	}
+
+	function check_ifAssignInsteadOfEquals(rangesToDecorate: vscode.DecorationOptions[]) {
+		let regex = /if ?\((\w+[^=!<>\r\n])*=([^=\r\n]*)\)/g;
+		let hoverMessage = 'Should be ${match[1]} == ${match[2]} or ${match[1]} === ${match[2]}';
+		let popupMessage = '= should be == or === in if-statements: ${errors.join(", ")}';
+		genericCheck(regex, hoverMessage, popupMessage, rangesToDecorate);
+	}
+
+	function check_endWithSemicolon(rangesToDecorate: vscode.DecorationOptions[]) {
+		let regex = /^(((?!\/\/).)*[^;.,:\)\}\{\s])$/gm;
+		let hoverMessage = 'Consider: end line with semicolon/comma: ${match[1]};';
+		let popupMessage = 'May need to end line with semicolon/comma: ${errors.join(", ")}';
+		genericCheck(regex, hoverMessage, popupMessage, rangesToDecorate);
+	}
+
+	function genericCheck(regex: RegExp = /^$/, hoverMessage: string = '', popupMessage: string = '', rangesToDecorate: vscode.DecorationOptions[] = []) {
+		if (!activeEditor) {
+			return;
+		}
 		const text = activeEditor.document.getText();
-		const rangesToDecorate: vscode.DecorationOptions[] = [];
-		const regexIdVariable = /if ?\(([^=)]*[iI][dD](?!\.)\b) ?[^=<>\r\n]*?\)/g;
+		const regexIdVariable = regex; // e.g. /if ?\(([^=)]*[iI][dD](?!\.)\b) ?[^=<>\r\n]*?\)/g;
 		let match = regexIdVariable.exec(text);
 		let errors = [];
 		while (match) {
@@ -56,16 +87,15 @@ export function activate(context: vscode.ExtensionContext) {
 			const startPos = activeEditor.document.positionAt(match.index);
 			const endPos = activeEditor.document.positionAt(match.index + match[0].length);
 			const decoration = {
-				range: new vscode.Range(startPos, endPos),
-				hoverMessage: `An ID of 0 would evaluate to false. Consider: ${match[1]} != null`
+				'range': new vscode.Range(startPos, endPos),
+				'hoverMessage': hoverMessage.replace(/\$\{match\[1\]\}/g, match[1]).replace(/\$\{match\[2\]\}/g, match[2]) // e.g. `An ID of 0 would evaluate to false. Consider: ${match[1]} != null`
 			};
 			rangesToDecorate.push(decoration);
 			match = regexIdVariable.exec(text);
 		}
-		activeEditor.setDecorations(decorationType, rangesToDecorate);
 		if (errors.length > 0) {
-			let startOfMessage = `ID of 0 would evaluate to false. Consider adding "!= null" for if-statements containing IDs: `;
-			vscode.window.showInformationMessage(startOfMessage + errors.join(', '));
+			// e.g. let popupMessage = `ID of 0 would evaluate to false. Consider adding "!= null" for if-statements containing IDs: `;
+			vscode.window.showInformationMessage(popupMessage.replace(/\$\{errors.join\(", "\)}/g, errors.join(', '))); // e.g. popupMessage + errors.join(', '));
 		}
 	}
 }

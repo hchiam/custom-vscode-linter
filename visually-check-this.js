@@ -4,7 +4,7 @@ if (ID) { // YES
     alert('hi');
 }
 if (a.clientID && hi) { // YES
-    alert('hi')
+    alert('hi');
 }
 
 if (ID != 0) { // NO
@@ -16,34 +16,52 @@ if (ID==0) { // NO
 }
 
 if (a.myId || what) { // YES
-    alert('hi')
+    alert('hi');
+} else if (hey || what) { // NO
+    alert()
 } else if (a.myId == 1 || why) { // NO
-    alert('hi')
+    alert('hi');
 } else if (other && a.myId > 0 || why) { // NO
-    alert('hi')
+    alert('hi');
 }
 
 
 if (hiIDa.clientIdExists) { // NO
-    alert('hi')
+    alert('hi');
 }
 
 if (hiID.clientId) { // YES
-    alert('hi')
+    alert('hi');
 }
 
 if (hiIDa.clientId) { // YES
-    alert('hi')
+    alert('hi');
 }
 
 if (hiID.clientIda) { // NO
-    alert('hi')
+    alert('hi');
 }
 
 if (hiIDa.clientIda) { // NO
-    alert('hi')
+    alert('hi');
 }
 
 if (hiIDa.clientId == 1) { // NO
-    alert('hi')
+    alert('hi');
+}
+
+if (a = 1) { // YES
+    alert('hi');
+} else if (a=1) {
+    alert('bye');
+}
+
+// comment // NO but YES to the next line
+alert('need semicolon')
+a = 1123123
+
+if (b = 1) { // YES
+    alert('hi');
+} else if (a=1) {
+    alert('bye');
 }

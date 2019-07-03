@@ -56,7 +56,7 @@ if (a = 1) { // YES
     alert('bye');
 }
 
-// comment // NO and YES to the next line
+// comment // NO and NO to the next line
 alert('need semicolon')
 // YES to the next line
 a = 1123123

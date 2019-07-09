@@ -48,7 +48,8 @@ export function activate(context: vscode.ExtensionContext) {
 		}
 		let rangesToDecorate: vscode.DecorationOptions[] = [];
 		check_ifIdWithoutNotNull(rangesToDecorate);
-		check_ifAssignInsteadOfEquals(rangesToDecorate);
+    check_ifAssignInsteadOfEquals(rangesToDecorate);
+    check_httpGet(rangesToDecorate);
 		activeEditor.setDecorations(decorationType, rangesToDecorate);
 	}
 
@@ -64,7 +65,14 @@ export function activate(context: vscode.ExtensionContext) {
 		let hoverMessage = 'Should be ${match[1]} == ${match[2]} or ${match[1]} === ${match[2]}';
 		let popupMessage = '= should be == or === in if-statements: ${errors.join(", ")}';
 		genericCheck(regex, hoverMessage, popupMessage, rangesToDecorate);
-	}
+  }
+
+	function check_httpGet(rangesToDecorate: vscode.DecorationOptions[]) {
+		let regex = /\$http\.get\(/g;
+		let hoverMessage = 'for a GET to work in IE, use $http.post instead of $http.get and include an empty request object';
+		let popupMessage = '= should be == or === in if-statements: ${errors.join(", ")}';
+		genericCheck(regex, hoverMessage, popupMessage, rangesToDecorate);
+  }
 
 	function genericCheck(regex: RegExp = /^$/, hoverMessage: string = '', popupMessage: string = '', rangesToDecorate: vscode.DecorationOptions[] = []) {
 		if (!activeEditor) {

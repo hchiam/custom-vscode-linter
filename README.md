@@ -2,6 +2,12 @@
 
 https://marketplace.visualstudio.com/items?itemName=hchiam.custom-vscode-linter
 
+## Examples of things it catches:
+
+- `if (request.clientID) {` should be `if (request.clientID != null) {`.
+- `if (a = 1) {` should be `if (a = 1) {`.
+- `$http.get` should be `$http.post` for a GET to work in IE (the request object can be an empty JSON).
+
 ## If you want to experiment with the source code:
 
 - (do the usual steps to download from GitHub and navigate to folder)
@@ -9,6 +15,7 @@ https://marketplace.visualstudio.com/items?itemName=hchiam.custom-vscode-linter
 - `npm run watch` (every time you want to test it)
 - open folder in VS Code and hit F5 or go to Debug and click on the green triangle play button
 - in user settings, you can customize the decoration color.
+
 ```
 "workbench.colorCustomizations": {
     "myextension.decorationType": "#ff00ff"
@@ -33,9 +40,9 @@ yo code
    `---------´   │        generator!        │
     ( _´U`_ )    ╰──────────────────────────╯
     /___A___\   /
-     |  ~  |     
-   __'.___.'__   
- ´   `  |° ´ Y ` 
+     |  ~  |
+   __'.___.'__
+ ´   `  |° ´ Y `
 
 ? What type of extension do you want to create? New Extension (TypeScript)
 ? What's the name of your extension? custom-vscode-linter

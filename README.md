@@ -70,6 +70,10 @@ vsce publish
 
 ```
 
+## Aside:
+
+If you keep trying to use the VSIX in VS Code and it doesn't update, check if the extension is disabled.
+
 # References I Used:
 
 https://github.com/microsoft/vscode-extension-samples/tree/master/decorator-sample

@@ -14,7 +14,8 @@ export function activate(context: vscode.ExtensionContext) {
 		},
 		dark: { // used in dark color themes
 			borderColor: 'lightblue'
-		}
+		},
+		textDecoration: 'wavy underline'
 	});
 
 	if (activeEditor) {

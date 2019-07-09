@@ -49,7 +49,6 @@ export function activate(context: vscode.ExtensionContext) {
 		let rangesToDecorate: vscode.DecorationOptions[] = [];
 		check_ifIdWithoutNotNull(rangesToDecorate);
 		check_ifAssignInsteadOfEquals(rangesToDecorate);
-		check_endWithSemicolon(rangesToDecorate);
 		activeEditor.setDecorations(decorationType, rangesToDecorate);
 	}
 
@@ -64,13 +63,6 @@ export function activate(context: vscode.ExtensionContext) {
 		let regex = /if ?\((\w+[^=!<>\r\n])*=([^=\r\n]*)\)/g;
 		let hoverMessage = 'Should be ${match[1]} == ${match[2]} or ${match[1]} === ${match[2]}';
 		let popupMessage = '= should be == or === in if-statements: ${errors.join(", ")}';
-		genericCheck(regex, hoverMessage, popupMessage, rangesToDecorate);
-	}
-
-	function check_endWithSemicolon(rangesToDecorate: vscode.DecorationOptions[]) {
-		let regex = /^(((?!\/\/).)*[^;.,:\)\}\{\s])$/gm;
-		let hoverMessage = 'Consider: end line with semicolon/comma: ${match[1]};';
-		let popupMessage = 'May need to end line with semicolon/comma: ${errors.join(", ")}';
 		genericCheck(regex, hoverMessage, popupMessage, rangesToDecorate);
 	}
 

@@ -8,6 +8,10 @@ https://marketplace.visualstudio.com/items?itemName=hchiam.custom-vscode-linter
 - `if (a = 1) {` should be `if (a = 1) {`.
 - `$http.get` should be `$http.post` for a GET to work in IE (the request object can be an empty JSON).
 
+## Future work / Suggestions:
+
+https://github.com/hchiam/custom-vscode-linter/issues
+
 ## If you want to experiment with the source code:
 
 - (do the usual steps to download from GitHub and navigate to folder)

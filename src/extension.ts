@@ -48,8 +48,8 @@ export function activate(context: vscode.ExtensionContext) {
 		}
 		let rangesToDecorate: vscode.DecorationOptions[] = [];
 		check_ifIdWithoutNotNull(rangesToDecorate);
-    check_ifAssignInsteadOfEquals(rangesToDecorate);
-    check_httpGet(rangesToDecorate);
+		check_ifAssignInsteadOfEquals(rangesToDecorate);
+		check_httpGet(rangesToDecorate);
 		activeEditor.setDecorations(decorationType, rangesToDecorate);
 	}
 

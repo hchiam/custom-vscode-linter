@@ -1,6 +1,6 @@
 # Custom VSCode Linter
 
-https://marketplace.visualstudio.com/items?itemName=hchiam.custom-vscode-linter
+Install on VS Code: https://marketplace.visualstudio.com/items?itemName=hchiam.custom-vscode-linter
 
 ## Examples of things it catches:
 

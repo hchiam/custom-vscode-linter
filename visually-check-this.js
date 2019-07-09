@@ -61,3 +61,9 @@ if (b = 1) { // YES
 } else if (a=1) {
     alert('bye');
 }
+
+function name(params) {
+    $http.get('some/url').then(function (res) { // YES
+        
+    });
+}

@@ -69,8 +69,8 @@ export function activate(context: vscode.ExtensionContext) {
 
 	function check_httpGet(rangesToDecorate: vscode.DecorationOptions[]) {
 		let regex = /\$http\.get\(/g;
-		let hoverMessage = 'for a GET to work in IE, use $http.post instead of $http.get and include an empty request object';
-		let popupMessage = '= should be == or === in if-statements: ${errors.join(", ")}';
+		let hoverMessage = 'For IE, use $http.post instead of $http.get, even for GET, and include an empty request object';
+		let popupMessage = 'Use $http.post instead of $http.get (for IE)';
 		genericCheck(regex, hoverMessage, popupMessage, rangesToDecorate);
   }
 

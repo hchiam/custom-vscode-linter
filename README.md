@@ -7,6 +7,8 @@ Install on VS Code: https://marketplace.visualstudio.com/items?itemName=hchiam.c
 - `if (request.clientID) {` should be `if (request.clientID != null) {`.
 - `if (a = 1) {` should be `if (a = 1) {`.
 - `$http.get` should be `$http.post` for a GET to work in IE (the request object can be an empty JSON).
+- `SCOPE_IDENTITY()`
+- `@@ROWCOUNT`
 
 ## Future work / Suggestions:
 

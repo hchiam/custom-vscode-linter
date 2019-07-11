@@ -102,8 +102,12 @@ export function activate(context: vscode.ExtensionContext) {
 		const regexIdVariable = regex; // e.g. /if ?\(([^=)]*[iI][dD](?!\.)\b) ?[^=<>\r\n]*?\)/g;
 		let match = regexIdVariable.exec(text);
 		let errors = [];
+		let firstLineNumber = null;
 		while (match) {
 			errors.push(match[1]);
+			if (firstLineNumber == null) {
+				firstLineNumber = activeEditor.document.positionAt(match.index).line + 1;
+			}
 			const startPos = activeEditor.document.positionAt(match.index);
 			const endPos = activeEditor.document.positionAt(match.index + match[0].length);
 			const decoration = {
@@ -115,7 +119,7 @@ export function activate(context: vscode.ExtensionContext) {
 		}
 		if (errors.length > 0) {
 			// e.g. let popupMessage = `ID of 0 would evaluate to false. Consider adding "!= null" for if-statements containing IDs: `;
-			vscode.window.showInformationMessage(popupMessage.replace(/\$\{errors.join\(", "\)}/g, errors.join(', '))); // e.g. popupMessage + errors.join(', '));
+			vscode.window.showInformationMessage('Line ' + firstLineNumber + ': ' + popupMessage.replace(/\$\{errors.join\(", "\)}/g, errors.join(', '))); // e.g. popupMessage + errors.join(', '));
 		}
 	}
 }

@@ -51,7 +51,8 @@ export function activate(context: vscode.ExtensionContext) {
 		check_ifIdWithoutNotNull(rangesToDecorate);
 		check_ifAssignInsteadOfEquals(rangesToDecorate);
 		check_httpGet(rangesToDecorate);
-		check_scopeIdentity(rangesToDecorate);
+		check_scopeIdentitySQL(rangesToDecorate);
+		check_rowCountSQL(rangesToDecorate);
 		activeEditor.setDecorations(decorationType, rangesToDecorate);
 	}
 
@@ -76,13 +77,20 @@ export function activate(context: vscode.ExtensionContext) {
 		genericCheck(regex, hoverMessage, popupMessage, rangesToDecorate);
 	}
 
-	function check_scopeIdentity(rangesToDecorate: vscode.DecorationOptions[]) {
+	function check_scopeIdentitySQL(rangesToDecorate: vscode.DecorationOptions[]) {
 		let regex = /SCOPE_IDENTITY\(\)/g;
 		let hoverMessage = `SCOPE_IDENTITY() is not thread-safe in SQL. Try using the output of an INSERT, e.g.: 
 								INSERT INTO MyTable (letters, numbers)
 								OUTPUT INSERTED.[ID]
 								VALUES ('ABC', 123)`;
 		let popupMessage = 'SCOPE_IDENTITY() is not thread-safe in SQL. Try using OUTPUT INSERTED.[ID] inside an INSERT.';
+		genericCheck(regex, hoverMessage, popupMessage, rangesToDecorate);
+	}
+
+	function check_rowCountSQL(rangesToDecorate: vscode.DecorationOptions[]) {
+		let regex = /@@ROWCOUNT/g;
+		let hoverMessage = '@@ROWCOUNT is not very thread-safe in SQL. Try this: NOT EXISTS(SELECT 1 FROM ...)';
+		let popupMessage = '@@ROWCOUNT is not very thread-safe in SQL. Try NOT EXISTS(SELECT 1 FROM ...)';
 		genericCheck(regex, hoverMessage, popupMessage, rangesToDecorate);
 	}
 

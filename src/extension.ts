@@ -51,6 +51,7 @@ export function activate(context: vscode.ExtensionContext) {
 		check_ifIdWithoutNotNull(rangesToDecorate);
 		check_ifAssignInsteadOfEquals(rangesToDecorate);
 		check_httpGet(rangesToDecorate);
+		check_scopeIdentity(rangesToDecorate);
 		activeEditor.setDecorations(decorationType, rangesToDecorate);
 	}
 
@@ -66,14 +67,24 @@ export function activate(context: vscode.ExtensionContext) {
 		let hoverMessage = 'Should be ${match[1]} == ${match[2]} or ${match[1]} === ${match[2]}';
 		let popupMessage = '= should be == or === in if-statements: ${errors.join(", ")}';
 		genericCheck(regex, hoverMessage, popupMessage, rangesToDecorate);
-  }
+	}
 
 	function check_httpGet(rangesToDecorate: vscode.DecorationOptions[]) {
 		let regex = /\$http\.get\(/g;
 		let hoverMessage = 'For IE, use $http.post instead of $http.get, even for GET, and include an empty request object';
 		let popupMessage = 'Use $http.post instead of $http.get (for IE)';
 		genericCheck(regex, hoverMessage, popupMessage, rangesToDecorate);
-  }
+	}
+
+	function check_scopeIdentity(rangesToDecorate: vscode.DecorationOptions[]) {
+		let regex = /SCOPE_IDENTITY\(\)/g;
+		let hoverMessage = `SCOPE_IDENTITY() is not thread-safe in SQL. Try using the output of an INSERT, e.g.: 
+								INSERT INTO MyTable (letters, numbers)
+								OUTPUT INSERTED.[ID]
+								VALUES ('ABC', 123)`;
+		let popupMessage = 'SCOPE_IDENTITY() is not thread-safe in SQL. Try using OUTPUT INSERTED.[ID] inside an INSERT.';
+		genericCheck(regex, hoverMessage, popupMessage, rangesToDecorate);
+	}
 
 	function genericCheck(regex: RegExp = /^$/, hoverMessage: string = '', popupMessage: string = '', rangesToDecorate: vscode.DecorationOptions[] = []) {
 		if (!activeEditor) {

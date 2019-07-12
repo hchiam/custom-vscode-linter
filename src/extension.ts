@@ -26,6 +26,7 @@ export function activate(context: vscode.ExtensionContext) {
 		activeEditor = editor;
 		if (editor) {
 			triggerUpdateDecorations();
+			randomIeReminder();
 		}
 	}, null, context.subscriptions);
 
@@ -120,6 +121,33 @@ export function activate(context: vscode.ExtensionContext) {
 		if (errors.length > 0) {
 			// e.g. let popupMessage = `ID of 0 would evaluate to false. Consider adding "!= null" for if-statements containing IDs: `;
 			vscode.window.showInformationMessage('Line ' + firstLineNumber + ': ' + popupMessage.replace(/\$\{errors.join\(", "\)}/g, errors.join(', '))); // e.g. popupMessage + errors.join(', '));
+		}
+	}
+
+	function randomIeReminder() {
+		let min = 1;
+		let max = 35;
+		let randomNumber = min + Math.floor(Math.random() * max);
+		let message = ''
+
+		if (randomNumber === 1) {
+			message = 'Random reminder: Did you test in IE?';
+		} else if (randomNumber === 2) {
+			message = 'Random reminder from Yoda: Test in IE did you?';
+		} else if (randomNumber === 3) {
+			message = "Random reminder from Batman: Test in IE. Your users deserve it.";
+		} else if (randomNumber === 4) {
+			message = 'Random reminder from Gandalf: Test in IE. Or it shall not pass.';
+		} else if (randomNumber === 5) {
+			message = "Random reminder from Elsa: Did you test in IE? Don't let it go.";
+		} else if (randomNumber === 6) {
+			message = "Random reminder from Ash: Always test in IE. Catch all 'em bugs.";
+		} else if (randomNumber === 7) {
+			message = "Random reminder from Groot: Test in IE. I am Groot.";
+		}
+
+		if (message) {
+			vscode.window.showInformationMessage(message);
 		}
 	}
 }

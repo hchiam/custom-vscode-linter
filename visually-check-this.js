@@ -68,4 +68,16 @@ function name(params) {
   });
 }
 
-console.log('hi');
+console.log('hi'); // YES
+
+AS
+BEGIN // YES
+
+AS
+
+BEGIN // YES
+
+AS--WITH ENCRYPTION
+BEGIN
+-- comment: sp_password // NO
+

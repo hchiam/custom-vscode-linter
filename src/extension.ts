@@ -55,6 +55,7 @@ export function activate(context: vscode.ExtensionContext) {
 		check_scopeIdentitySQL(rangesToDecorate);
 		check_rowCountSQL(rangesToDecorate);
 		check_encryptedSQL(rangesToDecorate);
+		check_consoleLog(rangesToDecorate);
 		activeEditor.setDecorations(decorationType, rangesToDecorate);
 	}
 
@@ -97,6 +98,13 @@ export function activate(context: vscode.ExtensionContext) {
 		let regex = /AS[\r\n\s]+BEGIN/g;
 		let hoverMessage = 'AS BEGIN should have "AS--WITH ENCRYPTION" and "BEGIN  -- comment: sp_password"';
 		let popupMessage = 'AS BEGIN should have "AS--WITH ENCRYPTION" and "BEGIN  -- comment: sp_password"';
+		genericCheck(regex, hoverMessage, popupMessage, rangesToDecorate);
+	}
+
+	function check_consoleLog(rangesToDecorate: vscode.DecorationOptions[]) {
+		let regex = /console\.log/g;
+		let hoverMessage = 'Remember to remove console log outputs.';
+		let popupMessage = 'A wild console.log() was found!';
 		genericCheck(regex, hoverMessage, popupMessage, rangesToDecorate);
 	}
 

@@ -1,69 +1,71 @@
 // for now, use this file to visually check that the extension works as expected
 
 if (ID) { // YES
-    alert('hi');
+  alert('hi');
 }
 if (a.clientID && hi) { // YES
-    alert('hi');
+  alert('hi');
 }
 
 if (ID != 0) { // NO
-    alert('hi');
+  alert('hi');
 }
 
-if (ID==0) { // NO
-    alert('hi');
+if (ID == 0) { // NO
+  alert('hi');
 }
 
 if (a.myId || what) { // YES
-    alert('hi');
+  alert('hi');
 } else if (hey || what) { // NO
-    alert()
+  alert()
 } else if (a.myId == 1 || why) { // NO
-    alert('hi');
+  alert('hi');
 } else if (other && a.myId > 0 || why) { // NO
-    alert('hi');
+  alert('hi');
 }
 
 
 if (hiIDa.clientIdExists) { // NO
-    alert('hi');
+  alert('hi');
 }
 
 if (hiID.clientId) { // YES
-    alert('hi');
+  alert('hi');
 }
 
 if (hiIDa.clientId) { // YES
-    alert('hi');
+  alert('hi');
 }
 
 if (hiID.clientIda) { // NO
-    alert('hi');
+  alert('hi');
 }
 
 if (hiIDa.clientIda) { // NO
-    alert('hi');
+  alert('hi');
 }
 
 if (hiIDa.clientId == 1) { // NO
-    alert('hi');
+  alert('hi');
 }
 
 if (a = 1) { // YES
-    alert('hi');
-} else if (a=1) {
-    alert('bye');
+  alert('hi');
+} else if (a = 1) { // YES
+  alert('bye');
 }
 
 if (b = 1) { // YES
-    alert('hi');
-} else if (a=1) {
-    alert('bye');
+  alert('hi');
+} else if (a = 1) { // YES
+  alert('bye');
 }
 
 function name(params) {
-    $http.get('some/url').then(function (res) { // YES
-        
-    });
+  $http.get('some/url').then(function(res) { // YES
+
+  });
 }
+
+console.log('hi');

@@ -2,7 +2,7 @@
   "name": "custom-vscode-linter",
   "displayName": "custom-vscode-linter",
   "description": "Custom VSCode Linter!",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "publisher": "hchiam",
   "repository": {
     "type": "git",

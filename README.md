@@ -14,7 +14,7 @@ Install on VS Code: https://marketplace.visualstudio.com/items?itemName=hchiam.c
     ```sql
     AS--WITH ENCRYPTION
     BEGIN
-      -- comment: sp_password // NO
+      -- comment: sp_password
     ```
 
 ## Future work / Suggestions:

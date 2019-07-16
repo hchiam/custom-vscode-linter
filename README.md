@@ -21,6 +21,10 @@ Install on VS Code: https://marketplace.visualstudio.com/items?itemName=hchiam.c
 
 https://github.com/hchiam/custom-vscode-linter/issues
 
+## If you want to understand how it works under the hood:
+
+I suggest starting at `function updateDecorations()`
+
 ## If you want to experiment with the source code:
 
 - (do the usual steps to download from GitHub and navigate to folder)

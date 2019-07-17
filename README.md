@@ -23,7 +23,7 @@ https://github.com/hchiam/custom-vscode-linter/issues
 
 ## If you want to understand how it works under the hood:
 
-I suggest starting at `function updateDecorations()`
+I suggest you start reading at `function updateDecorations()` in [src/extension.ts](https://github.com/hchiam/custom-vscode-linter/blob/master/src/extension.ts)
 
 ## If you want to experiment with the source code:
 

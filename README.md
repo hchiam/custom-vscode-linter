@@ -1,5 +1,7 @@
 # Custom VSCode Linter
 
+A code linter to flag common bugs that are hard-to-notice/remember, so you can fix them _before_ code review.
+
 Install on VS Code: https://marketplace.visualstudio.com/items?itemName=hchiam.custom-vscode-linter
 
 ## Examples of things it catches:

@@ -81,3 +81,7 @@ AS--WITH ENCRYPTION
 BEGIN
 -- comment: sp_password // NO
 
+Number(someOkThing); // NO
+Number(someID); // YES
+Number(something.someId); // YES
+Number(something.someID); // YES

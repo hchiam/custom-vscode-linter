@@ -56,6 +56,7 @@ export function activate(context: vscode.ExtensionContext) {
 		check_rowCountSQL(rangesToDecorate);
 		check_encryptedSQL(rangesToDecorate);
 		check_consoleLog(rangesToDecorate);
+		check_numberOfId(rangesToDecorate);
 		activeEditor.setDecorations(decorationType, rangesToDecorate);
 	}
 
@@ -105,6 +106,13 @@ export function activate(context: vscode.ExtensionContext) {
 		let regex = /console\.log/g;
 		let hoverMessage = 'Remember to remove console log outputs.';
 		let popupMessage = 'A wild console.log() was found!';
+		genericCheck(regex, hoverMessage, popupMessage, rangesToDecorate);
+	}
+
+	function check_numberOfId(rangesToDecorate: vscode.DecorationOptions[]) {
+		let regex = /Number\((.+)?I(d|D)\)/g;
+		let hoverMessage = 'If ${match[1]} is an ID but is empty, then Number(${match[1]}) evaluates to 0.';
+		let popupMessage = 'Number(${match[1]}) evaluates to 0 if ID is empty.';
 		genericCheck(regex, hoverMessage, popupMessage, rangesToDecorate);
 	}
 

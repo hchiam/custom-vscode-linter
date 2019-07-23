@@ -110,9 +110,9 @@ export function activate(context: vscode.ExtensionContext) {
 	}
 
 	function check_numberOfId(rangesToDecorate: vscode.DecorationOptions[]) {
-		let regex = /Number\((.+)?I(d|D)\)/g;
-		let hoverMessage = 'If ${match[1]} is an ID but is empty, then Number(${match[1]}) evaluates to 0.';
-		let popupMessage = 'Number(${match[1]}) evaluates to 0 if ID is empty.';
+		let regex = /Number\((.+?I(d|D))\)/g;
+		let hoverMessage = 'If ${match[1]} is an ID but is empty, then Number(${match[1]}) evaluates to 0 (e.g. Number("") -> 0).';
+		let popupMessage = 'Number(someId) evaluates to 0 if someId is empty (e.g. "").';
 		genericCheck(regex, hoverMessage, popupMessage, rangesToDecorate);
 	}
 

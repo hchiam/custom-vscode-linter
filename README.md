@@ -20,7 +20,7 @@ Install it on VS Code: https://marketplace.visualstudio.com/items?itemName=hchia
     BEGIN
       -- comment: sp_password
     ```
-- `Number(someID)` would evaluate to 0 if someID is empty.
+- `Number(someID)` would evaluate to 0 if someID is empty (e.g. Number('') -> 0).
 
 ## Future work / Suggestions:
 

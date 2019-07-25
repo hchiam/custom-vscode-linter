@@ -79,9 +79,16 @@ BEGIN // YES
 
 AS--WITH ENCRYPTION
 BEGIN
--- comment: sp_password // NO
+--comment: sp_password // NO
 
 Number(someOkThing); // NO
 Number(someID); // YES
 Number(something.someId); // YES
 Number(something.someID); // YES
+
+getNumber(something.someId || somethingElse.someOtherId); // NO
+
+if (!equipmentId) {} // NO
+
+Number(someId || -1) // NO
+Number(-1 || someId) // NO

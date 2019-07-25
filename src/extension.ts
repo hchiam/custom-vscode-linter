@@ -61,7 +61,7 @@ export function activate(context: vscode.ExtensionContext) {
 	}
 
 	function check_ifIdWithoutNotNull(rangesToDecorate: vscode.DecorationOptions[]) {
-		let regex = /if ?\(([^=)]*[iI][dD](?!\.)\b) ?[^=<>\r\n]*?\)/g;
+		let regex = /if ?\(([^=!)]*[iI][dD](?!\.)\b) ?[^=<>\r\n]*?\)/g;
 		let hoverMessage = 'An ID of 0 would evaluate to false. Consider: ${match[1]} != null';
 		let popupMessage = 'ID of 0 would evaluate to false. Consider adding "!= null" for if-statements containing IDs: ${errors.join(", ")}';
 		genericCheck(regex, hoverMessage, popupMessage, rangesToDecorate);
@@ -110,7 +110,7 @@ export function activate(context: vscode.ExtensionContext) {
 	}
 
 	function check_numberOfId(rangesToDecorate: vscode.DecorationOptions[]) {
-		let regex = /Number\((.+?I(d|D))\)/g;
+		let regex = /\WNumber\(([^!]?[^|)]*?I(d|D))\)/g;
 		let hoverMessage = 'If ${match[1]} is an ID but is empty, then Number(${match[1]}) evaluates to 0 (e.g. Number("") -> 0).';
 		let popupMessage = 'Number(someId) evaluates to 0 if someId is empty (e.g. "").';
 		genericCheck(regex, hoverMessage, popupMessage, rangesToDecorate);

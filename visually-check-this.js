@@ -88,7 +88,11 @@ Number(something.someID); // YES
 
 getNumber(something.someId || somethingElse.someOtherId); // NO
 
-if (!equipmentId) {} // NO
+if (!equipmentId) {} // YES
 
 Number(someId || -1) // NO
 Number(-1 || someId) // NO
+
+if (!someID) { // YES
+
+}

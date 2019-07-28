@@ -61,9 +61,9 @@ export function activate(context: vscode.ExtensionContext) {
 	}
 
 	function check_ifIdWithoutNotNull(rangesToDecorate: vscode.DecorationOptions[]) {
-		let regex = /if ?\(([^=!)]*[iI][dD](?!\.)\b) ?[^=<>\r\n]*?\)/g;
-		let hoverMessage = 'An ID of 0 would evaluate to false. Consider: ${match[1]} != null';
-		let popupMessage = 'ID of 0 would evaluate to false. Consider adding "!= null" for if-statements containing IDs: ${errors.join(", ")}';
+		let regex = /if ?\(([^=)]*?I[dD](?!\.)\b) ?[^=<>\r\n]*?\)/g;
+		let hoverMessage = 'An ID of 0 would evaluate to falsy. !(0) is truthy. Consider: ${match[1]} != null';
+		let popupMessage = 'ID of 0 would evaluate to falsy. Consider adding "!= null" for if-statements containing IDs: ${errors.join(", ")}';
 		genericCheck(regex, hoverMessage, popupMessage, rangesToDecorate);
 	}
 
@@ -110,8 +110,8 @@ export function activate(context: vscode.ExtensionContext) {
 	}
 
 	function check_numberOfId(rangesToDecorate: vscode.DecorationOptions[]) {
-		let regex = /\WNumber\(([^!]?[^|)]*?I(d|D))\)/g;
-		let hoverMessage = 'If ${match[1]} is an ID but is empty, then Number(${match[1]}) evaluates to 0 (e.g. Number("") -> 0).';
+		let regex = /\WNumber\(([^|)]*?I(d|D))\)/g;
+		let hoverMessage = 'If ${match[1]} is an ID but is empty, then Number(${match[1]}) would evaluate to 0 (e.g. Number("") -> 0).';
 		let popupMessage = 'Number(someId) evaluates to 0 if someId is empty (e.g. "").';
 		genericCheck(regex, hoverMessage, popupMessage, rangesToDecorate);
 	}
@@ -134,13 +134,13 @@ export function activate(context: vscode.ExtensionContext) {
 			const endPos = activeEditor.document.positionAt(match.index + match[0].length);
 			const decoration = {
 				'range': new vscode.Range(startPos, endPos),
-				'hoverMessage': hoverMessage.replace(/\$\{match\[1\]\}/g, match[1]).replace(/\$\{match\[2\]\}/g, match[2]) // e.g. `An ID of 0 would evaluate to false. Consider: ${match[1]} != null`
+				'hoverMessage': hoverMessage.replace(/\$\{match\[1\]\}/g, match[1]).replace(/\$\{match\[2\]\}/g, match[2]) // e.g. `An ID of 0 would evaluate to falsy. Consider: ${match[1]} != null`
 			};
 			rangesToDecorate.push(decoration);
 			match = regexIdVariable.exec(text);
 		}
 		if (errors.length > 0) {
-			// e.g. let popupMessage = `ID of 0 would evaluate to false. Consider adding "!= null" for if-statements containing IDs: `;
+			// e.g. let popupMessage = `ID of 0 would evaluate to falsy. Consider adding "!= null" for if-statements containing IDs: `;
 			vscode.window.showInformationMessage('Line ' + firstLineNumber + ': ' + popupMessage.replace(/\$\{errors.join\(", "\)}/g, errors.join(', '))); // e.g. popupMessage + errors.join(', '));
 		}
 	}

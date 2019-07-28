@@ -147,7 +147,7 @@ export function activate(context: vscode.ExtensionContext) {
 
 	function randomIeReminder() {
 		let min = 1;
-		let max = 70;
+		let max = 140;
 		let randomNumber = min + Math.floor(Math.random() * max);
 		let message = ''
 

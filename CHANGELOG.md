@@ -2,6 +2,10 @@
 
 All notable changes to the "custom-vscode-linter" extension will be documented in this file.
 
+## 0.7.1
+
+- Fixed #20 faulty check for password for SQL.
+
 ## 0.7.0
 
 - Added check for `TODO` comments.

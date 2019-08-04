@@ -81,6 +81,10 @@ AS--WITH ENCRYPTION
 BEGIN
 --comment: sp_password // NO
 
+AS--WITH ENCRYPTION
+BEGIN
+ // YES
+
 Number(someOkThing); // NO
 Number(someID); // YES
 Number(something.someId); // YES

@@ -2,7 +2,7 @@
 
 Some bugs are hard to notice during code reviews, or can be easily forgotten despite attempts at sharing knowledge across the team. Some of those bugs are also easy for a code linter to flag.
 
-This linter flags common bugs we've encountered, so we can fix them _before_ code review, and without having to remember to check for them.
+This linter flags common bugs I've encountered, so you can fix them _before_ code review, and without having to remember to check for them.
 
 Install it on VS Code: https://marketplace.visualstudio.com/items?itemName=hchiam.custom-vscode-linter
 

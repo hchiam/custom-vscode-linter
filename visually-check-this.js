@@ -96,3 +96,8 @@ Number(-1 || someId) // NO
 if (!someID) { // YES
 
 }
+
+// TODO // YES
+//TODO:// YES
+-- TODO: // YES
+--TODO // YES

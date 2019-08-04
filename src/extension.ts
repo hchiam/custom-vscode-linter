@@ -57,6 +57,7 @@ export function activate(context: vscode.ExtensionContext) {
 		check_encryptedSQL(rangesToDecorate);
 		check_consoleLog(rangesToDecorate);
 		check_numberOfId(rangesToDecorate);
+		check_todoComment(rangesToDecorate);
 		activeEditor.setDecorations(decorationType, rangesToDecorate);
 	}
 
@@ -113,6 +114,13 @@ export function activate(context: vscode.ExtensionContext) {
 		let regex = /\WNumber\(([^|)]*?I(d|D))\)/g;
 		let hoverMessage = 'If ${match[1]} is an ID but is empty, then Number(${match[1]}) would evaluate to 0 (e.g. Number("") -> 0).';
 		let popupMessage = 'Number(someId) evaluates to 0 if someId is empty (e.g. "").';
+		genericCheck(regex, hoverMessage, popupMessage, rangesToDecorate);
+	}
+
+	function check_todoComment(rangesToDecorate: vscode.DecorationOptions[]) {
+		let regex = /(\/\/|--) ?TODO/g;
+		let hoverMessage = 'To-do comment detected.';
+		let popupMessage = 'To-do comment detected.';
 		genericCheck(regex, hoverMessage, popupMessage, rangesToDecorate);
 	}
 

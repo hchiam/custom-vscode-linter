@@ -2,6 +2,10 @@
 
 All notable changes to the "custom-vscode-linter" extension will be documented in this file.
 
+## 0.7.0
+
+- Added check for `TODO` comments.
+
 ## 0.6.0
 
 - Added check for `Number(someID)`

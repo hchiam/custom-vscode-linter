@@ -99,7 +99,7 @@ export function activate(context: vscode.ExtensionContext) {
 	function check_encryptedSQL(rangesToDecorate: vscode.DecorationOptions[]) {
 		// cover "AS BEGIN"
 		// cover "AS--WITH ENCRYPTION BEGIN" but missing "--comment: sp_password" after it
-		let regex = /(AS(?!--WITH ENCRYPTION)[\r\n\s]+BEGIN[\r\n\s]*|AS *--WITH ENCRYPTION[\r\n\s]+BEGIN[\r\n\s]*(?! *?-- *?comment: sp_password).+)/g;
+		let regex = /(AS(?!--WITH ENCRYPTION)[\r\n\s\t]+BEGIN[\r\n\s\t]*|AS *\t?--WITH ENCRYPTION[\r\n\s\t]+BEGIN[\r\n\s\t]*(?! *?\t?-- *?comment: sp_password).+)/g;
 		let hoverMessage = 'AS BEGIN should have "AS--WITH ENCRYPTION" and "BEGIN  -- comment: sp_password"';
 		let popupMessage = 'AS BEGIN should have "AS--WITH ENCRYPTION" and "BEGIN  -- comment: sp_password"';
 		genericCheck(regex, hoverMessage, popupMessage, rangesToDecorate);

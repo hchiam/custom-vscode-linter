@@ -1,5 +1,7 @@
 # Custom VSCode Linter
 
+[![HitCount](http://hits.dwyl.com/hchiam/custom-vscode-linter.svg)](http://hits.dwyl.com/hchiam/custom-vscode-linter)
+
 Some bugs are hard to notice during code reviews, or can be easily forgotten despite attempts at sharing knowledge across the team. Some of those bugs are also easy for a code linter to flag.
 
 This linter flags common bugs I've encountered, so you can fix them _before_ code review, and without having to remember to check for them.
